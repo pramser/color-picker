@@ -64,6 +64,7 @@ export default function Home() {
     <main className="flex flex-row flex-wrap items-center min-h-screen">
       {colors.map(({ name, hex }) => (
         <div
+          key={name}
           className="border-r border-t flex h-48 items-start justify-end p-2 w-1/6"
           style={{ backgroundColor: hex }}
         >
