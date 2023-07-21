@@ -106,7 +106,7 @@ export default function Home() {
       })}
       <div
         onClick={() => setSelColor(null)}
-        className={`absolute bg-white top-0 h-full w-full z-10 ${
+        className={`fixed top-0 h-full w-full z-10 ${
           selColor ? "visible" : "hidden"
         }`}
         style={{ backgroundColor: selColor?.hex }}
