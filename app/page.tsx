@@ -66,12 +66,12 @@ export default function Home() {
 
   return (
     <main className="flex flex-row flex-wrap items-center min-h-screen">
-      {colors.map(({ name, hex }) => {
+      {colors.map(({ id, name, hex }) => {
         const textColor = isColorLight(hex) ? "#000" : "#fff"
 
         return (
           <div
-            key={name}
+            key={id}
             className="border-r border-t flex flex-col group justify-center relative p-2 h-48 w-full md:w-1/4 lg:w-1/6"
             style={{ backgroundColor: hex }}
           >
@@ -82,15 +82,15 @@ export default function Home() {
               {name}
             </p>
             <div className="m-auto text-xs hidden group-hover:block">
-              <button>
+              <button onClick={() => console.log("arrows")}>
                 <ArrowsPointingOutIcon
-                  className="pr-2 h-8 w-8"
+                  className="pr-2 h-12 w-12"
                   style={{ color: textColor }}
                 />
               </button>
-              <button>
+              <button onClick={() => console.log("squares")}>
                 <SquaresPlusIcon
-                  className="pl-2 h-8 w-8"
+                  className="pl-2 h-12 w-12"
                   style={{ color: textColor }}
                 />
               </button>
