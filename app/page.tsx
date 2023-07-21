@@ -30,10 +30,16 @@ function isColorLight(color: string) {
 }
 
 export default function Home() {
+  // genera info
   const [isLoaded, setIsLoaded] = useState(false)
   const [isError, setIsError] = useState(false)
   const [colors, setColors] = useState([])
-  const [selColors, setSelColors] = useState([])
+
+  // selected color
+  const [selColor, setSelColor] = useState<any | null>(null)
+
+  // compare colors
+  const [compareColors, setComparedColors] = useState([])
 
   useEffect(() => {
     fetch("/api/colors")
@@ -82,7 +88,7 @@ export default function Home() {
               {name}
             </p>
             <div className="m-auto text-xs hidden group-hover:block">
-              <button onClick={() => console.log("arrows")}>
+              <button onClick={() => setSelColor({ id, name, hex })}>
                 <ArrowsPointingOutIcon
                   className="pr-2 h-12 w-12"
                   style={{ color: textColor }}
@@ -98,6 +104,13 @@ export default function Home() {
           </div>
         )
       })}
+      <div
+        onClick={() => setSelColor(null)}
+        className={`absolute bg-white top-0 h-full w-full z-10 ${
+          selColor ? "visible" : "hidden"
+        }`}
+        style={{ backgroundColor: selColor?.hex }}
+      ></div>
     </main>
   )
 }
