@@ -30,10 +30,12 @@ function isColorLight(color: string) {
 }
 
 export default function Home() {
-  // genera info
+  // general info
   const [isLoaded, setIsLoaded] = useState(false)
   const [isError, setIsError] = useState(false)
   const [colors, setColors] = useState([])
+  const [searchText, setSearchText] = useState("")
+  const filterByName = (name: string) => name.includes(searchText)
 
   // selected color
   const [selColor, setSelColor] = useState<any | null>(null)
@@ -71,39 +73,48 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-row flex-wrap items-center min-h-screen">
-      {colors.map(({ id, name, hex }) => {
-        const textColor = isColorLight(hex) ? "#000" : "#fff"
+    <main className="flex flex-row flex-wrap items-start content-start min-h-screen">
+      <input
+        type="text"
+        className="p-4 h-12 w-screen"
+        placeholder="Search colors"
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+      />
+      {colors
+        .filter((color) => filterByName(color.name))
+        .map(({ id, name, hex }) => {
+          const textColor = isColorLight(hex) ? "#000" : "#fff"
 
-        return (
-          <div
-            key={id}
-            className="border-r border-t flex flex-col group justify-center relative p-2 h-48 w-full md:w-1/4 lg:w-1/6"
-            style={{ backgroundColor: hex }}
-          >
-            <p
-              className="absolute top-2 left-2 text-xs"
-              style={{ color: textColor }}
+          return (
+            <div
+              key={id}
+              className="border-r border-t flex flex-col group justify-center relative p-2 h-48 w-full md:w-1/4 lg:w-1/6"
+              style={{ backgroundColor: hex }}
             >
-              {name}
-            </p>
-            <div className="m-auto text-xs hidden group-hover:block">
-              <button onClick={() => setSelColor({ id, name, hex })}>
-                <ArrowsPointingOutIcon
-                  className="pr-2 h-12 w-12"
-                  style={{ color: textColor }}
-                />
-              </button>
-              <button onClick={() => console.log("squares")}>
-                <SquaresPlusIcon
-                  className="pl-2 h-12 w-12"
-                  style={{ color: textColor }}
-                />
-              </button>
+              <p
+                className="absolute top-2 left-2 text-xs"
+                style={{ color: textColor }}
+              >
+                {name}
+              </p>
+              <div className="m-auto text-xs hidden group-hover:block">
+                <button onClick={() => setSelColor({ id, name, hex })}>
+                  <ArrowsPointingOutIcon
+                    className="pr-2 h-12 w-12"
+                    style={{ color: textColor }}
+                  />
+                </button>
+                <button onClick={() => console.log("squares")}>
+                  <SquaresPlusIcon
+                    className="pl-2 h-12 w-12"
+                    style={{ color: textColor }}
+                  />
+                </button>
+              </div>
             </div>
-          </div>
-        )
-      })}
+          )
+        })}
       <div
         onClick={() => setSelColor(null)}
         className={`fixed top-0 h-full w-full z-10 ${
