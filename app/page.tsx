@@ -33,7 +33,7 @@ export default function Home() {
   // general info
   const [isLoaded, setIsLoaded] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [colors, setColors] = useState([])
+  const [colors, setColors] = useState<any[]>([])
   const [searchText, setSearchText] = useState("")
   const filterByName = (name: string) => name.includes(searchText)
 
