@@ -3,6 +3,12 @@
 import { useEffect, useState } from "react"
 import { PulseLoader } from "react-spinners"
 
+// icons
+import {
+  ArrowsPointingOutIcon,
+  SquaresPlusIcon,
+} from "@heroicons/react/24/solid"
+
 function hexToRgb(hex: string) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result
@@ -60,20 +66,38 @@ export default function Home() {
 
   return (
     <main className="flex flex-row flex-wrap items-center min-h-screen">
-      {colors.map(({ name, hex }) => (
-        <div
-          key={name}
-          className="border-r border-t flex items-start justify-end p-2 h-48 w-full md:w-1/4 lg:w-1/6"
-          style={{ backgroundColor: hex }}
-        >
-          <p
-            className="text-xs"
-            style={{ color: isColorLight(hex) ? "#000" : "#fff" }}
+      {colors.map(({ name, hex }) => {
+        const textColor = isColorLight(hex) ? "#000" : "#fff"
+
+        return (
+          <div
+            key={name}
+            className="border-r border-t flex flex-col group justify-center relative p-2 h-48 w-full md:w-1/4 lg:w-1/6"
+            style={{ backgroundColor: hex }}
           >
-            {name}
-          </p>
-        </div>
-      ))}
+            <p
+              className="absolute top-2 left-2 text-xs"
+              style={{ color: textColor }}
+            >
+              {name}
+            </p>
+            <div className="m-auto text-xs hidden group-hover:block">
+              <button>
+                <ArrowsPointingOutIcon
+                  className="pr-2 h-8 w-8"
+                  style={{ color: textColor }}
+                />
+              </button>
+              <button>
+                <SquaresPlusIcon
+                  className="pl-2 h-8 w-8"
+                  style={{ color: textColor }}
+                />
+              </button>
+            </div>
+          </div>
+        )
+      })}
     </main>
   )
 }
