@@ -105,12 +105,12 @@ export default function Home() {
                     style={{ color: textColor }}
                   />
                 </button>
-                <button onClick={() => console.log("squares")}>
+                {/* <button onClick={() => console.log("squares")}>
                   <SquaresPlusIcon
                     className="pl-2 h-12 w-12"
                     style={{ color: textColor }}
                   />
-                </button>
+                </button> */}
               </div>
             </div>
           )
