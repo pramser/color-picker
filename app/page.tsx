@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react"
 import { PulseLoader } from "react-spinners"
 
-const GET_COLORS = "https://api.sherwin-williams.com/prism/v1/colors/sherwin"
-
 function hexToRgb(hex: string) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
   return result
@@ -32,7 +30,7 @@ export default function Home() {
   const [selColors, setSelColors] = useState([])
 
   useEffect(() => {
-    fetch(GET_COLORS)
+    fetch("/api/colors")
       .then((res) => res.json())
       .then((json) => {
         setColors(json)
