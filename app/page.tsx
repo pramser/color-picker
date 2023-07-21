@@ -63,7 +63,7 @@ export default function Home() {
       {colors.map(({ name, hex }) => (
         <div
           key={name}
-          className="border-r border-t flex h-48 items-start justify-end p-2 w-1/6"
+          className="border-r border-t flex items-start justify-end p-2 h-48 w-full md:w-1/4 lg:w-1/6"
           style={{ backgroundColor: hex }}
         >
           <p
