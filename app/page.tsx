@@ -10,12 +10,12 @@ export default function Home() {
   // general info
   const [isLoaded, setIsLoaded] = useState(false)
   const [isError, setIsError] = useState(false)
-  const [colors, setColors] = useState<any[]>([])
+  const [colors, setColors] = useState<Color[]>([])
   const [searchText, setSearchText] = useState("")
   const filterByName = (name: string) => name.includes(searchText)
 
   // selected color
-  const [selColor, setSelColor] = useState<any | null>(null)
+  const [selColor, setSelColor] = useState<Color | null>(null)
 
   useEffect(() => {
     fetch("/api/colors")
@@ -53,8 +53,8 @@ export default function Home() {
       />
       {colors
         .filter((color) => filterByName(color.name))
-        .map(({ id, name, hex }) => (
-          <ColorSwash key={id} id={id} name={name} hex={hex} setSelColor={setSelColor} />
+        .map((color) => (
+          <ColorSwash key={color.id} color={color} setSelColor={setSelColor} />
         ))}
       <div
         onClick={() => setSelColor(null)}

@@ -1,10 +1,8 @@
 import { ArrowsPointingOutIcon } from "@heroicons/react/24/solid"
 
 interface Props {
-  id: number
-  name: string
-  hex: string
-  setSelColor: (color: { id: number; name: string; hex: string }) => void
+  color: Color
+  setSelColor: (color: Color) => void
 }
 
 function hexToRgb(hex: string) {
@@ -27,7 +25,8 @@ function isColorLight(color: string) {
   return rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114 > 186
 }
 
-export default function ColorSwash({ id, name, hex, setSelColor }: Props) {
+export default function ColorSwash({ color, setSelColor }: Props) {
+  const { id, name, hex } = color
   const textColor = isColorLight(hex) ? "#000" : "#fff"
 
   return (
@@ -40,7 +39,7 @@ export default function ColorSwash({ id, name, hex, setSelColor }: Props) {
         {name}
       </p>
       <div className="m-auto text-xs hidden group-hover:block">
-        <button onClick={() => setSelColor({ id, name, hex })}>
+        <button onClick={() => setSelColor(color)}>
           <ArrowsPointingOutIcon className="pr-2 h-12 w-12" style={{ color: textColor }} />
         </button>
       </div>
