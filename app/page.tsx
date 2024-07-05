@@ -6,6 +6,9 @@ import { PulseLoader } from "react-spinners"
 // components
 import ColorSwash from "@/components/ColorSwash"
 
+// utils
+import { isColorLight } from "@/types/_utils"
+
 export default function Home() {
   // general info
   const [isLoaded, setIsLoaded] = useState(false)
@@ -64,6 +67,11 @@ export default function Home() {
     )
   }
 
+  let selColorText = "#fff"
+  if (selColor) {
+    selColorText = isColorLight(selColor.hex) ? "#000" : "#fff"
+  }
+
   return (
     <main className="flex flex-row flex-wrap items-start content-start min-h-screen">
       <input
@@ -82,7 +90,12 @@ export default function Home() {
         onClick={() => setSelColor(null)}
         className={`fixed top-0 h-full w-full z-10 ${selColor ? "visible" : "hidden"}`}
         style={{ backgroundColor: selColor?.hex }}
-      ></div>
+      >
+        <div className="flex flex-col items-center justify-center h-full w-full" style={{ color: selColorText }}>
+          <p className="text-4xl">{selColor?.name}</p>
+          <p className="text-2xl">{selColor?.hex}</p>
+        </div>
+      </div>
     </main>
   )
 }
