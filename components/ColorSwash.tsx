@@ -1,8 +1,9 @@
-import { ArrowsPointingOutIcon } from "@heroicons/react/24/solid"
+import { ArrowsPointingOutIcon, Square3Stack3DIcon } from "@heroicons/react/24/solid"
 
 interface Props {
   color: Color
-  setSelColor: (color: Color) => void
+  setSelColor?: (color: Color) => void
+  getRelatedColors?: (color: Color) => void
 }
 
 function hexToRgb(hex: string) {
@@ -25,9 +26,14 @@ function isColorLight(color: string) {
   return rgb.r * 0.299 + rgb.g * 0.587 + rgb.b * 0.114 > 186
 }
 
-export default function ColorSwash({ color, setSelColor }: Props) {
+export default function ColorSwash({ color, setSelColor, getRelatedColors }: Props) {
   const { id, name, hex } = color
   const textColor = isColorLight(hex) ? "#000" : "#fff"
+
+  const passThrough = (color: Color) => {
+    console.log(color)
+    return setSelColor && setSelColor(color)
+  }
 
   return (
     <div
@@ -39,8 +45,11 @@ export default function ColorSwash({ color, setSelColor }: Props) {
         {name}
       </p>
       <div className="m-auto text-xs hidden group-hover:block">
-        <button onClick={() => setSelColor(color)}>
+        <button onClick={() => passThrough(color)}>
           <ArrowsPointingOutIcon className="pr-2 h-12 w-12" style={{ color: textColor }} />
+        </button>
+        <button onClick={() => getRelatedColors && getRelatedColors(color)}>
+          <Square3Stack3DIcon className="pr-2 h-12 w-12" style={{ color: textColor }} />
         </button>
       </div>
     </div>

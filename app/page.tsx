@@ -12,15 +12,37 @@ export default function Home() {
   const [isError, setIsError] = useState(false)
   const [colors, setColors] = useState<Color[]>([])
   const [searchText, setSearchText] = useState("")
-  const filterByName = (name: string) => name.includes(searchText)
-
-  // selected color
   const [selColor, setSelColor] = useState<Color | null>(null)
+
+  const filterByProps = (color: Color) => {
+    const { id, name, hex } = color
+    if (searchText.includes(":")) {
+      const [key, value] = searchText.split(":")
+
+      switch (key) {
+        case "id":
+          return id.includes(value)
+        case "ids":
+          return value.split(",").includes(id)
+        case "name":
+          return name.toLowerCase().includes(value.toLowerCase())
+        case "hex":
+          return hex.includes(value)
+      }
+    }
+
+    return name.toLowerCase().includes(searchText.toLowerCase())
+  }
+
+  const getRelatedColors = (color: Color) => {
+    setSearchText(`ids:${color.id},${color.similarColors.join(",")}`)
+  }
 
   useEffect(() => {
     fetch("/api/colors")
       .then((res) => res.json())
       .then((json) => {
+        console.log(json)
         setColors(json)
         setIsLoaded(true)
       })
@@ -52,9 +74,9 @@ export default function Home() {
         onChange={(e) => setSearchText(e.target.value)}
       />
       {colors
-        .filter((color) => filterByName(color.name))
+        .filter((color) => filterByProps(color))
         .map((color) => (
-          <ColorSwash key={color.id} color={color} setSelColor={setSelColor} />
+          <ColorSwash key={color.id} color={color} setSelColor={setSelColor} getRelatedColors={() => getRelatedColors(color)} />
         ))}
       <div
         onClick={() => setSelColor(null)}
