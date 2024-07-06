@@ -135,11 +135,11 @@ export default function Home() {
               </li>
               <li>
                 <span className="bg-white font-mono p-0.5 text-black">colorFamily:</span> Filters by simple color family. Think
-                "Red", "Blue", etc. Sherwin stores these capilatized.
+                &quot;Red&quot;, &quot;Blue&quot;, etc. Sherwin stores these capilatized.
               </li>
               <li>
                 <span className="bg-white font-mono p-0.5 text-black">hex:</span> Filters by hex value of color. You can use #
-                or not; doesn't matter.
+                or not; doesn&apos;t matter.
               </li>
               <li>
                 <span className="bg-white font-mono p-0.5 text-black">red:</span> Filters by red value of color
