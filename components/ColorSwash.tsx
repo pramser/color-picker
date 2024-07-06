@@ -12,11 +12,7 @@ export default function ColorSwash({ color, setSelColor, getRelatedColors }: Pro
   const textColor = isColorLight(hex) ? "#000" : "#fff"
 
   return (
-    <div
-      key={id}
-      className="border-r border-t flex flex-col group justify-center relative p-2 h-48 w-full md:w-1/4 lg:w-1/6"
-      style={{ backgroundColor: hex }}
-    >
+    <div key={id} className="color-swash group" style={{ backgroundColor: hex }}>
       <p className="absolute top-2 left-2 text-xs" style={{ color: textColor }}>
         {name}
       </p>
