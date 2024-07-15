@@ -89,7 +89,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-row flex-wrap items-start content-start min-h-screen">
+    <main className="flex flex-row flex-wrap items-start content-start min-h-screen" style={roboto.style}>
       <input
         type="text"
         className="p-4 h-12 w-screen"
@@ -116,7 +116,7 @@ export default function Home() {
       <div
         onClick={() => setVisibility(false)}
         className={`fixed top-0 h-full w-full z-20 ${isHowToVisible ? "visible" : "hidden"}`}
-        style={{ backgroundColor: "#000", ...roboto.style }}
+        style={{ backgroundColor: "#000" }}
       >
         <div className="flex flex-col items-center justify-center h-full w-full" style={{ color: "#fff" }}>
           <div className="flex flex-col p-8 md:p-0 w-full md:w-1/2">
@@ -126,7 +126,9 @@ export default function Home() {
               Type your search term into the search bar. This will filter all of the color names by whatever you type in.
             </p>
             <span className="font-bold mt-4 text-2xl">Advanced Search</span>
-            <p className="text-wrap">Hello, world!</p>
+            <p className="text-wrap">
+              Using the following search terms, you can filter the list by a number of different attributes.
+            </p>
             <span className="font-semibold mt-4 text-lg">Search terms</span>
             <ol className="list-disc list-inside">
               <li>

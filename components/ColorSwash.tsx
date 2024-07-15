@@ -12,7 +12,7 @@ export default function ColorSwash({ color, setSelColor, getRelatedColors }: Pro
   const textColor = isColorLight(hex) ? "#000" : "#fff"
 
   return (
-    <div key={id} className="color-swash group" style={{ backgroundColor: hex }}>
+    <div key={id} className="color-swash group tracking-wide" style={{ backgroundColor: hex }}>
       <p className="absolute top-2 left-2 text-xs" style={{ color: textColor }}>
         {name}
       </p>
