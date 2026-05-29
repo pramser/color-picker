@@ -19,28 +19,137 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  margin: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.search-input {
+  display: block;
+  width: 100%;
+  height: 4rem;
+  padding: 0 1.25rem;
+  border: 1px solid rgb(156, 163, 175);
+  border-radius: 0;
+  color: rgb(17, 24, 39);
+  background: rgb(255, 255, 255);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  outline-offset: -3px;
+}
+
+.search-input::placeholder {
+  color: rgb(107, 114, 128);
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  align-items: stretch;
+  width: 100%;
 }
 
 .color-swash {
   position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 12rem;
-  padding: 0.5rem;
+  min-height: clamp(11rem, 17vw, 20rem);
+  padding: 1rem;
   border-top: 1px solid rgb(229, 231, 235);
   border-right: 1px solid rgb(229, 231, 235);
+  overflow: hidden;
+  text-align: center;
 }
 
-@media (min-width: 768px) {
-  .color-swash {
-    width: 25%;
+.swash-name {
+  max-width: 100%;
+  font-size: clamp(1rem, 1.35vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.swash-actions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition: opacity 150ms ease, transform 150ms ease;
+  pointer-events: none;
+}
+
+.color-swash:hover .swash-actions,
+.color-swash:focus-within .swash-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.color-swash:hover .swash-name,
+.color-swash:focus-within .swash-name {
+  opacity: 0;
+}
+
+.swash-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  color: inherit;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  appearance: none;
+  cursor: pointer;
+}
+
+.swash-action:hover,
+.swash-action:focus-visible {
+  background: color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.swash-action svg {
+  width: 1.75rem;
+  height: 1.75rem;
+  color: inherit;
+  fill: currentColor;
+}
+
+.info-swash {
+  gap: 0.35rem;
+  cursor: pointer;
+  font-size: clamp(1.15rem, 1.5vw, 1.625rem);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.info-swash-icon {
+  width: clamp(5rem, 9vw, 9rem);
+  height: clamp(5rem, 9vw, 9rem);
+  margin-bottom: 0.75rem;
+  color: inherit;
+  fill: currentColor;
+}
+
+@media (max-width: 640px) {
+  .search-input {
+    height: 3.5rem;
+    font-size: 1.125rem;
   }
-}
 
-@media (min-width: 1024px) {
   .color-swash {
-    width: 16.666667%;
+    min-height: 10rem;
   }
 }

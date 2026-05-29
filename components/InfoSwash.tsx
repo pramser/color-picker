@@ -31,15 +31,13 @@ export default function InfoSwash({ onClick }: Props) {
   return (
     <div
       key="info"
-      className="color-swash flex flex-col group items-center justify-center"
-      style={{ backgroundColor: color }}
+      className="color-swash info-swash"
+      style={{ backgroundColor: color, color: textColor }}
       onClick={onClick}
     >
-      <QuestionMarkCircleIcon className="pr-2 h-8 w-8" style={{ color: textColor }} />
-      <span style={{ color: textColor }}>How to use this tool</span>
-      <span className="font-bold" style={{ color: textColor }}>
-        Click here!
-      </span>
+      <QuestionMarkCircleIcon className="info-swash-icon" />
+      <span>How to use this tool</span>
+      <span className="font-bold">Click here!</span>
     </div>
   )
 }

@@ -89,20 +89,27 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-row flex-wrap items-start content-start min-h-screen" style={roboto.style}>
+    <main className="min-h-screen" style={roboto.style}>
       <input
         type="text"
-        className="p-4 h-12 w-screen"
+        className="search-input"
         placeholder="Search colors"
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
       />
-      <InfoSwash onClick={() => setVisibility(true)} />
-      {colors
-        .filter((color) => filterByProps(color))
-        .map((color) => (
-          <ColorSwash key={color.id} color={color} setSelColor={setSelColor} getRelatedColors={() => getRelatedColors(color)} />
-        ))}
+      <section className="swatch-grid">
+        <InfoSwash onClick={() => setVisibility(true)} />
+        {colors
+          .filter((color) => filterByProps(color))
+          .map((color) => (
+            <ColorSwash
+              key={color.id}
+              color={color}
+              setSelColor={setSelColor}
+              getRelatedColors={() => getRelatedColors(color)}
+            />
+          ))}
+      </section>
       <div
         onClick={() => setSelColor(null)}
         className={`fixed top-0 h-full w-full z-10 ${selColor ? "visible" : "hidden"}`}

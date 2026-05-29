@@ -12,16 +12,22 @@ export default function ColorSwash({ color, setSelColor, getRelatedColors }: Pro
   const textColor = isColorLight(hex) ? "#000" : "#fff"
 
   return (
-    <div key={id} className="color-swash group tracking-wide" style={{ backgroundColor: hex }}>
-      <p className="absolute top-2 left-2 text-xs" style={{ color: textColor }}>
-        {name}
-      </p>
-      <div className="m-auto text-xs hidden group-hover:block">
-        <button onClick={() => setSelColor && setSelColor(color)}>
-          <ArrowsPointingOutIcon className="pr-2 h-12 w-12" style={{ color: textColor }} />
+    <div key={id} className="color-swash tracking-wide" style={{ backgroundColor: hex, color: textColor }}>
+      <p className="swash-name">{name}</p>
+      <div className="swash-actions">
+        <button
+          className="swash-action"
+          aria-label={`View ${name}`}
+          onClick={() => setSelColor && setSelColor(color)}
+        >
+          <ArrowsPointingOutIcon />
         </button>
-        <button onClick={() => getRelatedColors && getRelatedColors(color)}>
-          <Square3Stack3DIcon className="pr-2 h-12 w-12" style={{ color: textColor }} />
+        <button
+          className="swash-action"
+          aria-label={`Show colors related to ${name}`}
+          onClick={() => getRelatedColors && getRelatedColors(color)}
+        >
+          <Square3Stack3DIcon />
         </button>
       </div>
     </div>
