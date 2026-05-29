@@ -22,5 +22,25 @@ body {
 }
 
 .color-swash {
-  @apply border-r border-t flex flex-col justify-center relative p-2 h-48 w-full md:w-1/4 lg:w-1/6;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 12rem;
+  padding: 0.5rem;
+  border-top: 1px solid rgb(229, 231, 235);
+  border-right: 1px solid rgb(229, 231, 235);
+}
+
+@media (min-width: 768px) {
+  .color-swash {
+    width: 25%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .color-swash {
+    width: 16.666667%;
+  }
 }
