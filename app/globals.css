@@ -143,6 +143,101 @@ input {
   fill: currentColor;
 }
 
+.app-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-overlay-open {
+  display: block;
+}
+
+.color-overlay-content,
+.howto-overlay-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.color-overlay-content {
+  flex-direction: column;
+}
+
+.color-overlay-content p {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+}
+
+.color-overlay-content span {
+  margin-top: 0.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.howto-overlay {
+  z-index: 20;
+  color: rgb(255, 255, 255);
+  background: rgb(0, 0, 0);
+}
+
+.howto-panel {
+  display: flex;
+  flex-direction: column;
+  width: min(90vw, 42rem);
+  max-height: 90vh;
+  overflow: auto;
+}
+
+.howto-panel p {
+  margin: 0.25rem 0 0;
+  line-height: 1.5;
+}
+
+.howto-title {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  line-height: 1.15;
+}
+
+.howto-section-title {
+  margin-top: 1rem;
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.howto-list-title {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.howto-panel ol {
+  margin: 0.5rem 0 0;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.howto-panel li {
+  margin-top: 0.35rem;
+}
+
+.howto-panel li span {
+  display: inline-block;
+  padding: 0.125rem 0.25rem;
+  color: rgb(0, 0, 0);
+  background: rgb(255, 255, 255);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
 @media (max-width: 640px) {
   .search-input {
     height: 3.5rem;

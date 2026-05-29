@@ -112,52 +112,51 @@ export default function Home() {
       </section>
       <div
         onClick={() => setSelColor(null)}
-        className={`fixed top-0 h-full w-full z-10 ${selColor ? "visible" : "hidden"}`}
+        className={`app-overlay color-overlay ${selColor ? "app-overlay-open" : ""}`}
         style={{ backgroundColor: selColor?.hex }}
       >
-        <div className="flex flex-col items-center justify-center h-full w-full" style={{ color: selColorText }}>
-          <p className="text-4xl">{selColor?.name}</p>
-          <p className="text-2xl">{selColor?.hex}</p>
+        <div className="color-overlay-content" style={{ color: selColorText }}>
+          <p>{selColor?.name}</p>
+          <span>{selColor?.hex}</span>
         </div>
       </div>
       <div
         onClick={() => setVisibility(false)}
-        className={`fixed top-0 h-full w-full z-20 ${isHowToVisible ? "visible" : "hidden"}`}
-        style={{ backgroundColor: "#000" }}
+        className={`app-overlay howto-overlay ${isHowToVisible ? "app-overlay-open" : ""}`}
       >
-        <div className="flex flex-col items-center justify-center h-full w-full" style={{ color: "#fff" }}>
-          <div className="flex flex-col p-8 md:p-0 w-full md:w-1/2">
-            <span className="text-3xl">How to use this tool</span>
-            <span className="font-bold mt-4 text-2xl">Generic Search</span>
-            <p className="text-wrap">
+        <div className="howto-overlay-content">
+          <div className="howto-panel">
+            <span className="howto-title">How to use this tool</span>
+            <span className="howto-section-title">Generic Search</span>
+            <p>
               Type your search term into the search bar. This will filter all of the color names by whatever you type in.
             </p>
-            <span className="font-bold mt-4 text-2xl">Advanced Search</span>
-            <p className="text-wrap">
+            <span className="howto-section-title">Advanced Search</span>
+            <p>
               Using the following search terms, you can filter the list by a number of different attributes.
             </p>
-            <span className="font-semibold mt-4 text-lg">Search terms</span>
-            <ol className="list-disc list-inside">
+            <span className="howto-list-title">Search terms</span>
+            <ol>
               <li>
-                <span className="bg-white font-mono p-0.5 text-black">name:</span> Filters by name of color (omit this term to
+                <span>name:</span> Filters by name of color (omit this term to
                 use it by default)
               </li>
               <li>
-                <span className="bg-white font-mono p-0.5 text-black">colorFamily:</span> Filters by simple color family. Think
+                <span>colorFamily:</span> Filters by simple color family. Think
                 &quot;Red&quot;, &quot;Blue&quot;, etc. Sherwin stores these capilatized.
               </li>
               <li>
-                <span className="bg-white font-mono p-0.5 text-black">hex:</span> Filters by hex value of color. You can use #
+                <span>hex:</span> Filters by hex value of color. You can use #
                 or not; doesn&apos;t matter.
               </li>
               <li>
-                <span className="bg-white font-mono p-0.5 text-black">red:</span> Filters by red value of color
+                <span>red:</span> Filters by red value of color
               </li>
               <li>
-                <span className="bg-white font-mono p-0.5 text-black">green:</span> Filters by green value of color
+                <span>green:</span> Filters by green value of color
               </li>
               <li>
-                <span className="bg-white font-mono p-0.5 text-black">blue:</span> Filters by blue value of color
+                <span>blue:</span> Filters by blue value of color
               </li>
             </ol>
           </div>
